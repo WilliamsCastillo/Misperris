@@ -24,7 +24,7 @@ class RegistrarPersonaForm(forms.Form):
     fechaNacimiento=forms.DateField(widget=forms.SelectDateWidget(years=range(1910,2001)),label="Fecha de Nacimiento")
     numeroFono=forms.CharField(widget=forms.TextInput(),label="Telefono")
     regionPersona=forms.ChoiceField(choices=(regiones),label="Región")
-    ciudadPersona=forms.ChoiceField(choices=(('1', 'No sé que poner xd',),),label="Ciudad")
+    ciudadPersona=forms.ChoiceField(choices=(('1', 'Unknown',),),label="Ciudad")
     viviendaPersona=forms.ChoiceField(choices=(('1', 'Casa con Patio Grande'),('2', 'Casa con Patio Pequeño'),('3', 'Casa sin Patio'),('4', 'Departamento')),label="Tipo Vivienda")
 
 # Formulario para Registro de una Persona DESDE EL ADMIN

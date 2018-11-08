@@ -13,4 +13,6 @@ urlpatterns=[
     url(r'^registroPerro/$', views.registroPerro, name='registroPerro'),
     url(r'^registroAdmin/$', views.registroAdmin, name='registroAdmin'),
     url(r'^salir/$',views.salir,name="logout"),
+    url(r'^Adoptar/$',views.registroPerro,name="adoptaPerro"),
 ]
+
