@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>{{titulo}}</title>
+        <link rel="stylesheet" href="{% static 'css/maqueta.css' %}"> 
+        <script src="{% static 'js/prefix.js' %}" type="test/javascript"></script>
+        <script src="{% static "js/jquery-3.3.1.js" %}"></script>
+        <script src="{% static "js/popper.js" %}"></script>
+        <script src="{% static "js/bootstrap.js" %}"></script>
+        <script src="{% static "js/jquery.validate.js" %}"></script>
+        <script src="{% static "js/jquery.Rut.js" %}"></script>
+        <script src="{% static "js/app.js" %}"></script>
+    </head>
+    <body>
+        <header> 
+			<div class="logo">
+				<img src="{% static 'img/logo.png' %}" alt="Logo">
+				<a href="/index/">Mis Perris</a>
+			</div>
+
+         
+            {% if request.user.is_authenticated %}  
+                {% if user.is_staff %} 
+                    <nav> 
+                        <a href="/index/">Inicio</a>
+                        <a href="/registroAdmin/">Registrar Usuario</a>
+                        <a href="/registroAdmin/">Gestionar Usuario</a>
+                        <a href="/registroPerro/">Registrar Perro</a>
+                        <a href="/registroPerro/">Gestionar Perro</a>
+                        <a href="/salir/">Cerrar Sesión</a>
+                    </nav>
+                {% else %} <!-- Si es un Usuario normal, muestra esto -->
+                    <nav> <!--Menú Superior-->
+                        <a href="/index/">Inicio</a>
+                        <a href="/index/#info">Quienes Somos</a>
+                        <a href="/adoptar/">Adoptar</a>
+                        <a href="/salir/">Cerrar Sesión</a>
+                    </nav>
+                {% endif %}
+            {% else %} <!-- Si no está Logueado le Muestra el Header por Defecto -->
+                <nav> <!--Menú Superior-->
+                    <a href="/index/">Inicio</a>
+                    <a href="/index/#info">Quienes Somos</a>
+                    <a href="/registro/">Registrarse</a>
+                    <a href="/login/">Ingresar</a>
+                </nav>
+            {% endif %}
+
+        </header>
+        <div class="contenedor">
+            {% block principal %}
+            {% endblock %}
+        </div>
+
+      <footer>
+        Desarrollo Web y Mobile
+      </footer>
+    </body>
+</html>
