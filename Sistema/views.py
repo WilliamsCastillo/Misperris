@@ -8,12 +8,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from .models import Persona, Mascota
 from .forms import RegistrarPersonaForm, RegistrarAdminForm, LoginForm, RecuperacionForm, RegistrarMascotaForm, RestablecerForm
+from social_django.views import auth, complete, disconnect, _do_login
 
 
 def index(request):
     plantilla=loader.get_template("index.html")
     return HttpResponse(plantilla.render({'titulo':"Mis Perris"},request))
 
+def home(request):
+    return render(request, "index.html")
 
 def registroPersona(request):
     registro=1
@@ -70,7 +73,7 @@ def ingreso(request):
         if user is not None:
             login(request,user)
             return redirect('/')
-    return render(request,"login.html",{'form':form,'titulo':"Login",})
+    return render(request,'login.html',{'form':form,'titulo':'Login',})
 
 def salir(request):
     logout(request)
@@ -85,9 +88,9 @@ def olvido(request):
         send_mail(
                 'Recuperación de contraseña',
                 'Haga click aquí para ingresar una nueva contraseña',
-                'misperrisdjangodsw@gmail.com',
+                'recuperatuclav.2019@gmail.com',
                 [user.email],
-                html_message = 'Pulse <a href="http://localhost:8000/restablecer?user='+user.username+'">aquí</a> para robarle los datos .',
+                html_message = 'Pulse <a href="http://localhost:8000/restablecer?user='+user.username+'">aquí</a>',
             )
         mensaje='Correo Enviado a '+user.email
     return render(request,"olvido.html",{'form':form, 'mensaje':mensaje, 'titulo':"Recuperar Contraseña",})

@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from django.urls import path
+from social_django.urls import urlpatterns, app_name
+from django.urls import path,include
 from . import views
 
 
@@ -14,5 +15,9 @@ urlpatterns=[
     url(r'^registroAdmin/$', views.registroAdmin, name='registroAdmin'),
     url(r'^salir/$',views.salir,name="logout"),
     url(r'^Adoptar/$',views.registroPerro,name="adoptaPerro"),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'

@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Sistema.apps.SistemaConfig',
-    #'dpa_chile',
+    'Sistema.apps.SistemaConfig', 
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +49,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
 ]
 
 ROOT_URLCONF = 'MisPerris.urls'
@@ -64,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -102,6 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -127,7 +137,14 @@ EMAIL_USE_SSL=False
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 # CORREO DEL HOST
-EMAIL_HOST_USER='misperrisdjangodsw@gmail.com'
-# OJO CON ESTO
-EMAIL_HOST_PASSWORD='misperrisduoc1'
+EMAIL_HOST_USER='djangorecuperclave.2018@gmail.com'
+# CLAVE DEL MAIL RECUPERADOR
+EMAIL_HOST_PASSWORD='recuperatuclaveduoc'
 EMAIL_PORT=587
+
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL='/'
+
+SOCIAL_AUTH_FACEBOOK_KEY='384843808722039'
+SOCIAL_AUTH_FACEBOOK_SECRET='32ea8e897f5946c099c7deedc9ccbe8a'
