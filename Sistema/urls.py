@@ -16,7 +16,6 @@ urlpatterns=[
     url(r'^salir/$',views.salir,name="logout"),
     url(r'^Adoptar/$',views.registroPerro,name="adoptaPerro"),
     url('', include('social_django.urls', namespace='social')),
-    url(r'^fb/$',views.fb, name="fb"),
 ]
 
 LOGIN_URL = 'login'
